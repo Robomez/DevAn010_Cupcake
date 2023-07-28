@@ -24,7 +24,8 @@ class OrderViewModel : ViewModel() {
 
     private val _price = MutableLiveData<Double>()
     val price: LiveData<String> = _price.map {
-        NumberFormat.getInstance().format(it)
+        // Format the price into the local currency and return this as LiveData<String>
+        NumberFormat.getCurrencyInstance().format(_price.value)
     }
 
     val dateOptions = getPickupOptions()
